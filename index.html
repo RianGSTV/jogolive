@@ -51,20 +51,24 @@
 			}
 		}
 		footer {
-			color: black;
+			color: #333;
+			margin-top: 50px;
+			text-align: center;
 		}
 	</style>
 	<script>
-		function mostrarPopup() {
+		function mostrarMensagem() {
 			alert("Em qual bar?");
-			location.reload();
+			setTimeout(function() {
+				location.reload();
+			}, 5000);
 		}
 
 		function alternar() {
 			var botaoNao = document.getElementById("nao");
 			if (botaoNao.innerHTML === "Não") {
 				botaoNao.innerHTML = "Sim";
-				botaoNao.setAttribute("onclick", "mostrarPopup()");
+				botaoNao.setAttribute("onclick", "mostrarMensagem()");
 				botaoNao.setAttribute("id", "sim");
 			} else {
 				botaoNao.innerHTML = "Não";
@@ -78,7 +82,7 @@
 	<div class="container">
 		<h1>Vamos beber hoje?</h1>
 		<p>Escolha uma opção:</p>
-		<button id="sim" onclick="mostrarPopup()">Sim</button>
+		<button id="sim" onclick="mostrarMensagem()">Sim</button>
 		<div class="espaco"></div>
 		<button id="nao" onclick="alternar()">Não</button>
 	</div>
