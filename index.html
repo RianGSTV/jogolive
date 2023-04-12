@@ -1,43 +1,81 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>ABRA</title>
+	<title>ABRA, URGENTE</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style>
-		.yes {
-			background-color: blue;
-			color: white;
-			padding: 10px;
-			border-radius: 5px;
-			cursor: pointer;
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
 		}
-		.no {
-			background-color: red;
-			color: white;
+		.container {
+			max-width: 800px;
+			margin: 0 auto;
+			padding: 20px;
+		}
+		h1, p {
+			margin: 0 0 20px;
+			text-align: center;
+			color: #333;
+		}
+		button {
+			display: block;
+			width: 100%;
+			max-width: 300px;
+			margin: 0 auto;
 			padding: 10px;
+			border: none;
 			border-radius: 5px;
+			font-size: 18px;
+			color: #fff;
 			cursor: pointer;
+			transition: background-color 0.3s ease-in-out;
+		}
+		#sim {
+			background-color: #4CAF50;
+		}
+		#nao {
+			background-color: #f44336;
+		}
+		button:hover {
+			background-color: #333;
+		}
+		@media only screen and (max-width: 600px) {
+			button {
+				max-width: 100%;
+			}
 		}
 	</style>
 	<script>
-		function changeText() {
-			var noButton = document.getElementById("no-button");
-			if (noButton.innerHTML === "Não") {
-				noButton.innerHTML = "Sim";
-				noButton.style.backgroundColor = "blue";
+		function mostrarPopup() {
+			alert("Em qual bar?");
+			window.addEventListener("load", function(){
+				location.reload();
+			});
+		}
+
+		function alternar() {
+			var botaoNao = document.getElementById("nao");
+			if (botaoNao.innerHTML === "Não") {
+				botaoNao.innerHTML = "Sim";
+				botaoNao.setAttribute("onclick", "mostrarPopup()");
+				botaoNao.setAttribute("id", "sim");
 			} else {
-				noButton.innerHTML = "Não";
-				noButton.style.backgroundColor = "red";
-				alert("Parabéns, vamos para o bar!");
+				botaoNao.innerHTML = "Não";
+				botaoNao.setAttribute("onclick", "alternar()");
+				botaoNao.setAttribute("id", "nao");
 			}
 		}
 	</script>
 </head>
 <body>
-	<h1>Vamos para o bar hoje?</h1>
-	<p>Clique em uma das opções abaixo:</p>
-	<div>
-		<button id="yes-button" class="yes" onclick="changeText()">Sim</button>
-		<button id="no-button" class="no" onclick="changeText()">Não</button>
+	<div class="container">
+		<h1>Vamos beber hoje?</h1>
+		<p>Escolha uma opção:</p>
+		<button id="sim" onclick="mostrarPopup()">Sim</button>
+		<button id="nao" onclick="alternar()">Não</button>
 	</div>
 </body>
 </html>
