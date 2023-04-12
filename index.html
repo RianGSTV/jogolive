@@ -42,6 +42,9 @@
 		button:hover {
 			background-color: #333;
 		}
+		.espaco {
+			height: 20px;
+		}
 		@media only screen and (max-width: 600px) {
 			button {
 				max-width: 100%;
@@ -51,9 +54,7 @@
 	<script>
 		function mostrarPopup() {
 			alert("Em qual bar?");
-			window.addEventListener("load", function(){
-				location.reload();
-			});
+			location.reload();
 		}
 
 		function alternar() {
@@ -75,6 +76,7 @@
 		<h1>Vamos beber hoje?</h1>
 		<p>Escolha uma opção:</p>
 		<button id="sim" onclick="mostrarPopup()">Sim</button>
+		<div class="espaco"></div>
 		<button id="nao" onclick="alternar()">Não</button>
 	</div>
 </body>
