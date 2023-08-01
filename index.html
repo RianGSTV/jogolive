@@ -1,91 +1,57 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>ABRA, URGENTE</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<style>
-		body {
-			margin: 0;
-			padding: 0;
-			font-family: Arial, sans-serif;
-			background-color: #f2f2f2;
-		}
-		.container {
-			max-width: 800px;
-			margin: 0 auto;
-			padding: 20px;
-		}
-		h1, p {
-			margin: 0 0 20px;
-			text-align: center;
-			color: #333;
-		}
-		button {
-			display: block;
-			width: 100%;
-			max-width: 300px;
-			margin: 0 auto;
-			padding: 10px;
-			border: none;
-			border-radius: 5px;
-			font-size: 18px;
-			color: #fff;
-			cursor: pointer;
-			transition: background-color 0.3s ease-in-out;
-		}
-		#sim {
-			background-color: #4CAF50;
-		}
-		#nao {
-			background-color: #f44336;
-		}
-		button:hover {
-			background-color: #333;
-		}
-		.espaco {
-			height: 20px;
-		}
-		@media only screen and (max-width: 600px) {
-			button {
-				max-width: 100%;
-			}
-		}
-		footer {
-			color: #333;
-			margin-top: 50px;
-			text-align: center;
-		}
-	</style>
-	<script>
-		function mostrarMensagem() {
-			alert("Em qual bar?");
-			setTimeout(function() {
-				location.reload();
-			}, 5000);
-		}
+    <title>Opções de Redirecionamento</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #999999;
+        }
 
-		function alternar() {
-			var botaoNao = document.getElementById("nao");
-			if (botaoNao.innerHTML === "Não") {
-				botaoNao.innerHTML = "Sim";
-				botaoNao.setAttribute("onclick", "mostrarMensagem()");
-				botaoNao.setAttribute("id", "sim");
-			} else {
-				botaoNao.innerHTML = "Não";
-				botaoNao.setAttribute("onclick", "alternar()");
-				botaoNao.setAttribute("id", "nao");
-			}
-		}
-	</script>
+        .square {
+            width: 200px;
+            height: 200px;
+            background-color: #007bff;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: #fff;
+            text-decoration: none;
+            margin: 20px;
+        }
+
+        .square:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+
+        .square a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            color: #fff;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-	<div class="container">
-		<h1>Vamos beber hoje?</h1>
-		<p>Escolha uma opção:</p>
-		<button id="sim" onclick="mostrarMensagem()">Sim</button>
-		<div class="espaco"></div>
-		<button id="nao" onclick="alternar()">Não</button>
-	</div>
-	<footer> @riangstv</footer>
+    <div class="square">
+        <a href="./pagina1.html.html">QUAL É A MÚSICA?</a>
+    </div>
+    <div class="square">
+        <a href="./pagina2.html.html">ADIVINHE A BANDEIRA</a>
+    </div>
+    <div class="square">
+        <a href="./pagina3.html.html">QUAL É O PAÍS?</a>
+    </div>
 </body>
 </html>
