@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Adivinhe é o país?</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        color: #fff;
+        background-color: #333;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+
+    #cinema-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 60vh;
+        background-color: #222;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    }
+
+    #cinema-screen {
+        width: 600px;
+        height: 400px;
+        background-color: black;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    }
+
+    #response-box {
+        width: 300px;
+        height: 40px;
+        margin-top: 20px;
+        border: 2px solid #555;
+        border-radius: 5px;
+        padding: 5px;
+        background-color: #444;
+        color: #fff;
+        font-size: 16px;
+    }
+
+    #submit-btn {
+        margin-top: 10px;
+        padding: 5px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+    }
+</style>
+</head>
+<body>
+<h1>Qual é o país?</h1>
+<div id="cinema-container">
+    <div id="cinema-screen">
+        <img src="pais.png" style="width: 600px; height: 400px; object-fit: cover; border-radius: 20px;" />
+    </div>
+</div>
+<div>
+    <input type="text" id="response-box" placeholder="Digite o nome do país (PT/BR)">
+    <button id="submit-btn">Enviar</button>
+</div>
+
+<script>
+    // Função que será chamada quando o botão for clicado
+    function verificarResposta() {
+        var resposta = document.getElementById("response-box").value.trim().toLowerCase();
+
+        if (resposta === "luxemburgo") {
+            // Exibir pop-up de acerto
+            alert("Parabéns! Você acertou!");
+           window.location.href = "file:///C:/Users/Pichau/Desktop/Mount/jogo.html";
+        } else {
+            // Exibir pop-up de erro
+            alert("Resposta incorreta. Tente novamente!");
+        }
+    }
+
+    // Event listener para o clique do botão
+    document.getElementById("submit-btn").addEventListener("click", verificarResposta);
+
+    // Event listener para pressionar a tecla "Enter" no campo de resposta
+    document.getElementById("response-box").addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) { // Código 13 corresponde à tecla "Enter"
+            verificarResposta();
+        }
+    });
+</script>
+</body>
+</html>
