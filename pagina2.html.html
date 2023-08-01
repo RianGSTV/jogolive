@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Adivinhe a bandeira</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    color: #fff;
+    background-color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+
+  #cinema-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    background-color: #222;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  }
+
+  #cinema-screen {
+    width: 600px;
+    height: 400px;
+    background-color: black;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  }
+
+  #response-box {
+    width: 300px;
+    height: 40px;
+    margin-top: 20px;
+    border: 2px solid #555;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #444;
+    color: #fff;
+    font-size: 16px;
+  }
+
+  #submit-btn {
+    margin-top: 10px;
+    padding: 5px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+</style>
+</head>
+<body>
+  <h1>Adivinhe a bandeira</h1>
+  <div id="cinema-container">
+    <div id="cinema-screen">
+      <img src="bandeira1.png" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;" />
+    </div>
+  </div>
+  <div>
+    <input type="text" id="response-box" placeholder="Digite o nome do país (PT/BR)" onkeydown="checkEnter(event)">
+    <button id="submit-btn" onclick="checkAnswer()">Enviar</button>
+  </div>
+
+  <script>
+    function checkAnswer() {
+      var resposta = document.getElementById("response-box").value.toLowerCase(); // Obtém a resposta digitada em letras minúsculas
+
+      if (resposta === "andorra") {
+        // Se a resposta estiver correta, exibe o pop-up
+        alert("Resposta correta! Parabéns, você acertou Andorra!");
+        window.location.href = "file:///C:/Users/Pichau/Desktop/Mount/jogo.html";
+      }
+    }
+
+    function checkEnter(event) {
+      // Verifica se a tecla pressionada é a tecla "Enter"
+      if (event.key === "Enter") {
+        checkAnswer(); // Chama a função checkAnswer() quando a tecla "Enter" é pressionada
+      }
+    }
+  </script>
+</body>
+</html>
