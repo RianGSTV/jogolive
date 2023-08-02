@@ -83,6 +83,12 @@
         left: 50%;
         transform: translate(-50%, -50%);
     }
+
+    /* Estilizar a mensagem de "Resposta incorreta" */
+    #resposta-incorreta {
+        color: red;
+        display: none;
+    }
 </style>
 </head>
 <body>
@@ -99,6 +105,8 @@
         <input type="text" id="response-box" placeholder="Digite o nome da música">
         <button type="submit" id="submit-btn">Enviar</button>
     </form>
+    <!-- Adicionar um elemento para mostrar a mensagem de resposta incorreta -->
+    <div id="resposta-incorreta">Resposta incorreta. Tente novamente.</div>
 </div>
 
 <!-- Elemento para exibir a mensagem de "Jogo finalizado" -->
@@ -113,7 +121,7 @@ var respostas = [
 var currentVideoIndex = 0;
 
 function verificarResposta() {
-    var respostaUsuario = document.getElementById("response-box").value.trim().toLowerCase();
+    var respostaUsuario = document.getElementById("response-box").value.trim();
 
     // Verificar se a resposta está vazia antes de prosseguir
     if (respostaUsuario === "") {
@@ -122,7 +130,7 @@ function verificarResposta() {
 
     var respostaCorretaAtual = respostas[currentVideoIndex].respostaCorreta;
 
-    if (respostaUsuario === respostaCorretaAtual) {
+    if (respostaUsuario.toLowerCase() === respostaCorretaAtual.toLowerCase()) {
         if (currentVideoIndex < respostas.length - 1) {
             currentVideoIndex++;
             var videoElement = document.getElementById("cinema-screen");
@@ -137,8 +145,11 @@ function verificarResposta() {
                 window.location.href = "https://illustrious-marigold-57b9d5.netlify.app/";
             };
         }
+        // Esconder a mensagem de resposta incorreta, caso esteja sendo exibida
+        document.getElementById("resposta-incorreta").style.display = "none";
     } else {
-        alert("Resposta incorreta. Tente novamente.");
+        // Mostrar a mensagem de resposta incorreta
+        document.getElementById("resposta-incorreta").style.display = "block";
     }
 
     // Apagar o conteúdo da caixa de texto após enviar a resposta
