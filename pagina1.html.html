@@ -62,33 +62,89 @@
         cursor: pointer;
         font-size: 18px;
     }
+
+    /* Posicionar o botão abaixo da caixa de resposta */
+    #submit-btn {
+        display: block;
+        margin-top: 10px;
+    }
+
+    /* Estilizar a mensagem de "Jogo finalizado" */
+    #final-message {
+        display: none;
+        font-size: 24px;
+        background-color: #444;
+        color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 </style>
 </head>
 <body>
 <h1>Qual é a música, Mount?</h1>
 <div id="cinema-container">
     <video id="cinema-screen" width="600" height="400" controls>
-        <source src="video.mp4" type="video/mp4">
+        <source src="video1.mp4" type="video/mp4">
         <!-- Adicione mais sources para outros formatos de vídeo, se necessário -->
         Seu navegador não suporta a reprodução de vídeos.
     </video>
 </div>
 <div>
-    <input type="text" id="response-box" placeholder="Digite o nome da música" onkeydown="verificarTecla(event)">
-    <button id="submit-btn" onclick="verificarResposta()">Enviar</button>
+    <form onsubmit="return verificarResposta()">
+        <input type="text" id="response-box" placeholder="Digite o nome da música">
+        <button type="submit" id="submit-btn">Enviar</button>
+    </form>
 </div>
 
+<!-- Elemento para exibir a mensagem de "Jogo finalizado" -->
+<div id="final-message" style="display: none;">Jogo finalizado!</div>
+
 <script>
+var respostas = [
+    { respostaCorreta: "resposta_video1", video: "video1.mp4" },
+    { respostaCorreta: "resposta_video2", video: "video2.mp4" },
+    { respostaCorreta: "resposta_video3", video: "video3.mp4" }
+];
+var currentVideoIndex = 0;
+
 function verificarResposta() {
     var respostaUsuario = document.getElementById("response-box").value.trim().toLowerCase();
-    var respostaCorreta = "creep";
 
-    if (respostaUsuario === respostaCorreta) {
-        alert("Resposta correta! Você acertou a música! Vai tomar no cu Renato Chagas");
-        window.location.href = "https://illustrious-marigold-57b9d5.netlify.app/";
+    if (respostaUsuario === "") {
+        alert("Digite o nome da música antes de enviar.");
+        return false;
+    }
+
+    var respostaCorretaAtual = respostas[currentVideoIndex].respostaCorreta;
+
+    if (respostaUsuario === respostaCorretaAtual) {
+        if (currentVideoIndex < respostas.length - 1) {
+            currentVideoIndex++;
+            var videoElement = document.getElementById("cinema-screen");
+            videoElement.src = respostas[currentVideoIndex].video;
+            videoElement.load();
+        } else {
+            var finalMessage = document.getElementById("final-message");
+            finalMessage.style.display = "block";
+            var submitBtn = document.getElementById("submit-btn");
+            submitBtn.textContent = "Voltar ao início";
+            submitBtn.onclick = function() {
+                window.location.href = "https://illustrious-marigold-57b9d5.netlify.app/";
+            };
+        }
     } else {
         alert("Resposta incorreta. Tente novamente.");
     }
+
+    // Apagar o conteúdo da caixa de texto após enviar a resposta
+    document.getElementById("response-box").value = "";
+
+    return false;
 }
 
 function verificarTecla(event) {
