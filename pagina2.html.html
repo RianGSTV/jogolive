@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,11 +33,18 @@
   }
 
   #cinema-screen {
-    width: 600px;
-    height: 400px;
+    width: 610px;
+    height: 410px;
     background-color: black;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  }
+
+  #bandeira {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
   }
 
   #response-box {
@@ -84,7 +88,6 @@
     font-size: 18px;
   }
 
-  /* Estilo para a div que contém os botões e a barra de texto */
   #input-container {
     display: flex;
     flex-direction: column;
@@ -98,7 +101,6 @@
     width: 300px;
   }
 
-  /* Estilo para o pop-up */
   #popup-container {
     display: none;
     position: fixed;
@@ -123,7 +125,7 @@
   <h1>Adivinhe a bandeira</h1>
   <div id="cinema-container">
     <div id="cinema-screen">
-      <img id="bandeira" src="bandeira1.png" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;" />
+      <img id="bandeira" src="bandeira1.png" />
     </div>
   </div>
   <div id="input-container">
@@ -135,7 +137,6 @@
     <p id="error-message"></p>
   </div>
 
-  <!-- Pop-up -->
   <div id="popup-container">
     <p id="popup-text">Jogo finalizado!</p>
   </div>
@@ -158,10 +159,7 @@
       var resposta = document.getElementById("response-box").value.toLowerCase();
       var errorMessage = document.getElementById("error-message");
 
-      if (resposta === countries[currentCountryIndex].name) {
-        var bandeiraImg = document.getElementById("bandeira");
-        bandeiraImg.src = countries[currentCountryIndex].image;
-        bandeiraImg.alt = "Bandeira " + (currentCountryIndex + 2);
+      if (resposta === countries[currentCountryIndex].name.toLowerCase()) {
         errorMessage.innerText = "";
 
         currentCountryIndex++;
@@ -174,6 +172,10 @@
           document.getElementById("restart-btn").style.display = "inline";
 
           gameOver = true;
+        } else {
+          var bandeiraImg = document.getElementById("bandeira");
+          bandeiraImg.src = countries[currentCountryIndex].image;
+          bandeiraImg.alt = "Bandeira " + (currentCountryIndex + 1);
         }
       } else {
         errorMessage.innerText = "Resposta incorreta. Tente novamente.";
