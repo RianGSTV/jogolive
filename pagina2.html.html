@@ -51,17 +51,6 @@
     color: #fff;
     font-size: 16px;
   }
-
-  #submit-btn {
-    margin-top: 10px;
-    padding: 5px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 18px;
-  }
 </style>
 </head>
 <body>
@@ -73,7 +62,6 @@
   </div>
   <div>
     <input type="text" id="response-box" placeholder="Digite o nome do país (PT/BR)" onkeydown="checkEnter(event)">
-    <button id="submit-btn" onclick="checkAnswer()">Enviar</button>
   </div>
 
   <script>
@@ -82,7 +70,7 @@
 
       if (resposta === "andorra") {
         // Se a resposta estiver correta, exibe o pop-up
-        alert("Resposta correta! Parabéns, você acertou! Andorra! Vai tomar no cu Roberto Chagas");
+        alert("Resposta correta! Parabéns, você acertou! Andorra!");
         window.location.href = "https://illustrious-marigold-57b9d5.netlify.app/";
       }
     }
