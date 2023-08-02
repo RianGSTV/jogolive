@@ -115,8 +115,8 @@ var currentVideoIndex = 0;
 function verificarResposta() {
     var respostaUsuario = document.getElementById("response-box").value.trim().toLowerCase();
 
+    // Verificar se a resposta está vazia antes de prosseguir
     if (respostaUsuario === "") {
-        alert("Digite o nome da música antes de enviar.");
         return false;
     }
 
