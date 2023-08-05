@@ -10,7 +10,9 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #151e1e;
+            background-image: url("background.png"); /* Define a imagem como plano de fundo */
+            background-size: cover;
+            background-repeat: no-repeat;
         }
 
         .square-container {
@@ -40,7 +42,7 @@
             background-image: url("musica.png");
             background-size: cover;
             background-repeat: no-repeat;
-            background-position-x: -60px;
+            background-position: -60px center; /* Move a imagem 60px para a direita */
         }
 
         .square:nth-child(2) {
@@ -53,7 +55,7 @@
             background-image: url("mundo.jpg");
             background-size: cover;
             background-repeat: no-repeat;
-            background-position-x: -60px;
+            background-position: -50px center; /* Move a imagem 60px para a direita */
         }
 
         .square:hover {
@@ -73,11 +75,40 @@
             text-shadow: none; 
             padding-top: 230px; 
         }
+
+        /* Estilo para o GIF */
+        .square img {
+            position: absolute;
+            top: -110px;
+            left: 30px;
+            width: 150px; /* Defina a largura do GIF */
+            height: 150px; /* Defina a altura do GIF */
+        }
+
+        /* Estilo para os botões pequenos no canto inferior direito */
+        .buttons-container {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .small-button {
+            padding: 5px 10px;
+            font-size: 14px;
+            background-color: #2F4F4F;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
     <div class="square-container">
         <div class="square" data-game="Qual é a música?">
+            <img src="seu_gif.gif" alt="GIF" class="gif-overlay">
             <a href="./pagina1.html.html">Qual é a música?</a>
         </div>
         <div class="square" data-game="Adivinhe a bandeira">
@@ -86,6 +117,12 @@
         <div class="square" data-game="Adivinhe o país">
             <a href="./pagina3.html.html">Adivinhe o país</a>
         </div>
+    </div>
+
+    <!-- Botões pequenos no canto inferior direito -->
+    <div class="buttons-container">
+        <a class="small-button" href="https://www.twitch.tv/mount" target="_blank">twitch.tv/mount</a>
+        <a class="small-button" href="https://www.instagram.com/riangstv/" target="_blank">@riangstv</a>
     </div>
 </body>
 </html>
