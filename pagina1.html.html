@@ -35,7 +35,9 @@
     #cinema-screen {
         width: 600px;
         height: 400px;
-        background-color: black;
+        background-image: url('imagem1.jpg');
+        background-size: cover;
+        background-position: center;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
     }
@@ -52,7 +54,13 @@
         font-size: 16px;
     }
 
-    #submit-btn {
+    #buttons-container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    #submit-btn,
+    #hint-btn {
         margin-top: 10px;
         padding: 5px 20px;
         background-color: #007bff;
@@ -61,15 +69,27 @@
         border-radius: 5px;
         cursor: pointer;
         font-size: 18px;
+        margin-right: 60px;
+        position: absolute;
     }
 
-    /* Posicionar o botão abaixo da caixa de resposta */
     #submit-btn {
-        display: block;
-        margin-top: 10px;
+        top: 610px;
+        right: 623px;
     }
 
-    /* Estilizar a mensagem de "Jogo finalizado" */
+    #resposta-incorreta {
+        color: red;
+        display: none;
+    }
+
+    #hint-btn {
+        position: absolute;
+        top: 135px;
+        right: 245px;
+    }
+
+    
     #final-message {
         display: none;
         font-size: 24px;
@@ -83,29 +103,22 @@
         left: 50%;
         transform: translate(-50%, -50%);
     }
-
-    /* Estilizar a mensagem de "Resposta incorreta" */
-    #resposta-incorreta {
-        color: red;
-        display: none;
-    }
 </style>
 </head>
 <body>
 <h1>Qual é a música, Mount?</h1>
 <div id="cinema-container">
-    <video id="cinema-screen" width="600" height="400" controls>
-        <source src="video1.mp4" type="video/mp4">
-        <!-- Adicione mais sources para outros formatos de vídeo, se necessário -->
-        Seu navegador não suporta a reprodução de vídeos.
-    </video>
+    <div id="cinema-screen"></div>
 </div>
 <div>
     <form onsubmit="return verificarResposta()">
         <input type="text" id="response-box" placeholder="Digite o nome da música">
-        <button type="submit" id="submit-btn">Enviar</button>
+        <div id="buttons-container">
+            <button type="submit" id="submit-btn">Enviar</button>
+            <button id="hint-btn" onclick="mostrarDica()">Dica</button>
+        </div>
     </form>
-    <!-- Adicionar um elemento para mostrar a mensagem de resposta incorreta -->
+    <div id="dica" style="display: none;"></div>
     <div id="resposta-incorreta">Resposta incorreta. Tente novamente.</div>
 </div>
 
@@ -113,57 +126,50 @@
 <div id="final-message" style="display: none;">Jogo finalizado!</div>
 
 <script>
-var respostas = [
-    { respostaCorreta: "Boulevard of Broken Dreams", video: "video1.mp4" },
-    { respostaCorreta: "Stand By Me", video: "video2.mp4" },
-    { respostaCorreta: "Like a Stone", video: "video3.mp4" }
-];
-var currentVideoIndex = 0;
+var isImage = true;
 
 function verificarResposta() {
     var respostaUsuario = document.getElementById("response-box").value.trim();
 
-    // Verificar se a resposta está vazia antes de prosseguir
     if (respostaUsuario === "") {
         return false;
     }
 
-    var respostaCorretaAtual = respostas[currentVideoIndex].respostaCorreta;
+    var respostaCorretaAtual = "Mount";
 
     if (respostaUsuario.toLowerCase() === respostaCorretaAtual.toLowerCase()) {
-        if (currentVideoIndex < respostas.length - 1) {
-            currentVideoIndex++;
-            var videoElement = document.getElementById("cinema-screen");
-            videoElement.src = respostas[currentVideoIndex].video;
-            videoElement.load();
-        } else {
-            var finalMessage = document.getElementById("final-message");
-            finalMessage.style.display = "block";
-            var submitBtn = document.getElementById("submit-btn");
-            submitBtn.textContent = "Voltar ao início";
-            submitBtn.onclick = function() {
-                window.location.href = "https://jogosmount.netlify.app/";
-            };
-        }
-        // Esconder a mensagem de resposta incorreta, caso esteja sendo exibida
+        var finalMessage = document.getElementById("final-message");
+        finalMessage.style.display = "block";
+        var submitBtn = document.getElementById("submit-btn");
+        submitBtn.textContent = "Voltar ao início";
+        submitBtn.onclick = function() {
+            window.location.href = "https://jogosmount.netlify.app/";
+        };
         document.getElementById("resposta-incorreta").style.display = "none";
     } else {
-        // Mostrar a mensagem de resposta incorreta
         document.getElementById("resposta-incorreta").style.display = "block";
     }
 
-    // Apagar o conteúdo da caixa de texto após enviar a resposta
     document.getElementById("response-box").value = "";
 
     return false;
 }
 
-function verificarTecla(event) {
-    if (event.keyCode === 13) {
-        verificarResposta();
+function mostrarDica() {
+    var dicaElement = document.getElementById("dica");
+    dicaElement.innerText = "";
+    dicaElement.style.display = "block";
+
+    var cinemaScreen = document.getElementById("cinema-screen");
+    if (isImage) {
+        cinemaScreen.style.backgroundImage = "url('imagem2.jpg')";
+        isImage = false;
+    } else {
+        cinemaScreen.style.backgroundImage = "none";
+        cinemaScreen.innerHTML = '<video id="video-player" width="600" height="400" controls><source src="video.mp4" type="video/mp4">Seu navegador não suporta a reprodução de vídeos.</video>';
+        isImage = true;
     }
 }
 </script>
 </body>
 </html>
-
