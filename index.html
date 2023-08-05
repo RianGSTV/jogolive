@@ -1,8 +1,8 @@
-
 <!DOCTYPE html>
 <html>
 <head>
     <title>LIVE MOUNT</title>
+    <meta charset="UTF-8">
     <style>
         body {
             display: flex;
@@ -13,25 +13,52 @@
             background-color: #151e1e;
         }
 
+        .square-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         .square {
+            position: relative;
             width: 200px;
             height: 200px;
             background-color: #294242;
             border-radius: 10px;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             font-size: 24px;
             color: #fff;
             text-decoration: none;
             margin: 20px;
-            transition: transform 0.2s ease-in-out;
+            line-height: 1.2; 
+        }
+
+        .square:nth-child(1) {
+            background-image: url("musica.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position-x: -60px;
+        }
+
+        .square:nth-child(2) {
+            background-image: url("bandeiras.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .square:nth-child(3) {
+            background-image: url("mundo.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position-x: -60px;
         }
 
         .square:hover {
             background-color: #2F4F4F;
             cursor: pointer;
-            transform: scale(1.1);
         }
 
         .square a {
@@ -43,18 +70,22 @@
             height: 100%;
             color: #fff;
             text-decoration: none;
+            text-shadow: none; 
+            padding-top: 230px; 
         }
     </style>
 </head>
 <body>
-    <div class="square">
-        <a href="./pagina1.html.html">QUAL É A MÚSICA?</a>
-    </div>
-    <div class="square">
-        <a href="./pagina2.html.html">ADIVINHE A BANDEIRA</a>
-    </div>
-    <div class="square">
-        <a href="./pagina3.html.html">QUAL É O PAÍS?</a>
+    <div class="square-container">
+        <div class="square" data-game="Qual é a música?">
+            <a href="./pagina1.html.html">Qual é a música?</a>
+        </div>
+        <div class="square" data-game="Adivinhe a bandeira">
+            <a href="./pagina2.html.html">Adivinhe a bandeira</a>
+        </div>
+        <div class="square" data-game="Adivinhe o país">
+            <a href="./pagina3.html.html">Adivinhe o país</a>
+        </div>
     </div>
 </body>
 </html>
