@@ -38,7 +38,7 @@
     #cinema-screen {
         width: 600px;
         height: 400px;
-        background-image: url('imagem1.jpg');
+        background-image: url('imagem1.png');
         background-size: cover;
         background-position: center;
         border-radius: 10px;
@@ -125,7 +125,6 @@
     <div id="resposta-incorreta">Resposta incorreta. Tente novamente.</div>
 </div>
 
-<!-- Elemento para exibir a mensagem de "Jogo finalizado" -->
 <div id="final-message" style="display: none;">Jogo finalizado!</div>
 
 <script>
@@ -165,7 +164,7 @@ function mostrarDica() {
 
     var cinemaScreen = document.getElementById("cinema-screen");
     if (isImage) {
-        cinemaScreen.style.backgroundImage = "url('imagem2.jpg')";
+        cinemaScreen.style.backgroundImage = "url('imagem2.png')";
         isImage = false;
     } else {
         cinemaScreen.style.backgroundImage = "none";
