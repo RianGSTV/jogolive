@@ -76,7 +76,7 @@
             padding-top: 230px; 
         }
 
-        /* Estilo para o GIF */
+        
         .square img {
             position: absolute;
             top: -110px;
@@ -103,26 +103,101 @@
             text-decoration: none;
             border-radius: 5px;
         }
+
+        
+        .top-right-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            font-size: 14px;
+            background-color: #2F4F4F;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            z-index: 1000; 
+        }
+
+        
+        .dialog-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            border-radius: 10px;
+            text-align: center;
+            display: none; 
+            z-index: 1001; 
+        }
+
+        .dialog-box p {
+            margin-bottom: 10px;
+        }
+
+        .dialog-box a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+                .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #fff;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
+    <!-- Botão no canto superior direito -->
+    <a class="top-right-button" id="open-dialog" href="#">Onde está a onça?</a>
+
+    <!-- Caixa de diálogo -->
+    <div class="dialog-box" id="dialog-box">
+        <span class="close-button" id="close-dialog">&times;</span>
+        <p>Que onça?</p>
+        <a href="#" id="option">?</a>
+    </div>
+
     <div class="square-container">
         <div class="square" data-game="Qual é a música?">
             <img src="seu_gif.gif" alt="GIF" class="gif-overlay">
-            <a href="./pagina1.html.html">Qual é a música?</a>
+            <a href='/pagina1.html'>Qual é a música?</a>
         </div>
         <div class="square" data-game="Adivinhe a bandeira">
-            <a href="./pagina2.html.html">Adivinhe a bandeira</a>
+            <a href='/pagina2.html'>Adivinhe a bandeira</a>
         </div>
         <div class="square" data-game="Adivinhe o país">
-            <a href="./pagina3.html.html">Adivinhe o país</a>
+            <a href='/pagina3.html'>Adivinhe o país</a>
         </div>
     </div>
 
-    
     <div class="buttons-container">
         <a class="small-button" href="https://www.twitch.tv/mount" target="_blank">twitch.tv/mount</a>
         <a class="small-button" href="https://www.instagram.com/riangstv/" target="_blank">@riangstv</a>
     </div>
+
+    <script>
+                const openDialogButton = document.getElementById("open-dialog");
+        const closeDialogButton = document.getElementById("close-dialog");
+        const dialogBox = document.getElementById("dialog-box");
+        const optionLink = document.getElementById("option");
+
+        openDialogButton.addEventListener("click", function () {
+            dialogBox.style.display = "block";
+        });
+
+        closeDialogButton.addEventListener("click", function () {
+            dialogBox.style.display = "none";
+        });
+
+        optionLink.addEventListener("click", function (event) {
+            event.preventDefault();
+            optionLink.innerText = "A pintada que eu te dei";
+        });
+    </script>
 </body>
 </html>
