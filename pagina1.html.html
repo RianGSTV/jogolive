@@ -106,10 +106,42 @@
         left: 50%;
         transform: translate(-50%, -50%);
     }
+
+   
+    #popup {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        align-items: center;
+        justify-content: center;
+    }
+
+    #popup-content {
+        background-color: black;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        color: white;
+    }
+
+    #popup-close {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+    }
 </style>
 </head>
 <body>
 <h1>Qual é a música, Mount?</h1>
+<div id="mensagem-inicial"></div>
 <div id="cinema-container">
     <div id="cinema-screen"></div>
 </div>
@@ -125,7 +157,16 @@
     <div id="resposta-incorreta">Resposta incorreta. Tente novamente.</div>
 </div>
 
-<div id="final-message" style="display: none;">Jogo finalizado!</div>
+<div id="final-message" style="display: none;">Resposta correta! Jogo finalizado!</div>
+
+
+<div id="popup">
+    <div id="popup-content">
+        <p class="popup-message">A 1° imagem é um pequeno trecho da música.<br> Ao clicar em "DICA"
+ aparecerá alguma informação sobre o cantor ou a banda.<br> ao clicar em "DICA" novamente tocará um pedaço da música.</p>
+        <button id="popup-close" onclick="fecharPopup()">Ok</button>
+    </div>
+</div>
 
 <script>
 var isImage = true;
@@ -172,6 +213,19 @@ function mostrarDica() {
         isImage = true;
     }
 }
+
+function exibirPopup() {
+    var popup = document.getElementById("popup");
+    popup.style.display = "flex";
+}
+
+function fecharPopup() {
+    var popup = document.getElementById("popup");
+    popup.style.display = "none";
+}
+
+
+window.onload = exibirPopup;
 </script>
 </body>
 </html>
